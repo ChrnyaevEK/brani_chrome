@@ -1,14 +1,11 @@
 {
-  "posts": [
-    { "id": 1, "title": "Post 1" },
-    { "id": 2, "title": "Post 2" },
-    { "id": 3, "title": "Post 3" }
-  ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 },
-    { "id": 2, "body": "some comment", "postId": 1 }
-  ],
-  "profile": {
-    "name": "typicode"
+  "data": {
+    "domain": "359903.myshoptet.com",
+    "credit": 600,
+    "modules": [
+       { "id": 0, "credit": "100" },
+       { "id": 1, "credit": "200" },
+       { "id": 2, "credit": "300" }
+    ] 
   }
 }
