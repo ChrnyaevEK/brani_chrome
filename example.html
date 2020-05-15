@@ -1,0 +1,128 @@
+<html>
+
+<head></head>
+
+<body>
+    <script src="./search.js"></script>
+    <script src="./write.js"></script>
+    <h1>This page shows basic usage of functions `search` and `write`</h1>
+    <!---------------------------SEARCH----------------------------------------------------------------------------------------------->
+    <p>
+        <hr>
+    <h2>Search</h2>
+    <script>
+
+
+
+
+
+        // Want to get a value of `value` in `source` .
+        // Traditional way: source.level.sublevel.value .
+        // Problem: it is impossible to do dynamically .
+        // Solution: 
+        var source = {
+            level: {
+                sublevel: {
+                    value: 'Got You!',
+                    anotherValue: 'Wrong!'
+                },
+                anotherSublevel: {}
+            },
+            anotherLevel: {}
+        }
+        var path = ['level', 'sublevel', 'value']
+        var result = search(source, path) // Expected: 'Got You!'
+        console.log(`Result of searching: ${result}`)
+
+
+
+
+
+    </script>
+
+    <h4>Source:</h4>
+    <pre><script>document.write(JSON.stringify(source, null, 2))</script></pre>
+
+    <h4>Path:</h4>
+    <pre><script>document.write(JSON.stringify(path))</script></pre>
+
+    <h4>Result:</h4>
+    <script>document.write(result)</script>
+    </p>
+
+
+
+
+
+
+
+
+    
+    <!---------------------------WRITE----------------------------------------------------------------------------------------------->
+    <p>
+        <hr>
+    <h2>Write</h2>
+    <script>
+
+
+        // !!! Attention, target will change itself, do not forget to copy it!
+        function deepCopy(object) { return JSON.parse(JSON.stringify(object)) }
+
+        // Want to set a value (A,B,C) to `target` by `path` .
+        // Traditional way: source.level.sublevel.value = value .
+        // Problem: it is impossible to do dynamically .
+        // Solution:
+        var target = {
+            sensitiveDate: {
+                neverDelete: 'This should not be deleted'
+            }
+        }
+        var path = ['level', 'sublevel', 'value']
+        var valueA = { data: 'Path was created, value was written!' }
+        var valueB = { data: 'Value was rewritten!' }
+        var valueC = undefined
+
+        var targetBeforeWrite = deepCopy(target)
+        write(target, path, valueA)  // Path will be created
+        var resultA = deepCopy(target)
+        write(target, path, valueB)  // ValueA will be rewritten by valueB
+        var resultB = deepCopy(target)
+        write(target, path, undefined, true)  // Value at path will be deleted
+        var resultC = deepCopy(target)
+
+        console.log(resultA, resultB, resultC)
+
+
+
+
+    </script>
+    <h4>Target before write operation:</h4>
+    <pre><script>document.write(JSON.stringify(targetBeforeWrite, null, 2))</script></pre>
+
+    <h4>Path:</h4>
+    <pre><script>document.write(JSON.stringify(path))</script></pre>
+
+    <h4>ValueA:</h4>
+    <pre><script>document.write(JSON.stringify(valueA, null, 2))</script></pre>
+
+    <h4>ResultA: first write operation: path will be created and value set:</h4>
+    <pre><script>document.write(JSON.stringify(resultA, null, 2))</script></pre>
+
+    <h4>ValueB:</h4>
+    <pre><script>document.write(JSON.stringify(valueB, null, 2))</script></pre>
+
+    <h4>ResultB: second write operation: value will be reset:</h4>
+    <pre><script>document.write(JSON.stringify(resultB, null, 2))</script></pre>
+
+    <h4>ValueC:</h4>
+    <script>document.write(valueC)</script>
+
+    <h4>ResultC: third write operation: value will be deleted:</h4>
+    <pre><script>document.write(JSON.stringify(resultC, null, 2))</script></pre>
+
+
+    </p>
+
+</body>
+
+</html>
